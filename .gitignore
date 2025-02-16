@@ -59,6 +59,9 @@ __pycache__/
 ### Project template
 
 modicusprime/media/
+modicusprime/static/
+staticfiles/
+
 .pytest_cache/
 docs/
 utility/
@@ -82,3 +85,4 @@ poetry.lock
 
 # MacOS
 .DS_Store
+
