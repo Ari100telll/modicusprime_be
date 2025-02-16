@@ -1,10 +1,7 @@
 from django.contrib.auth.models import AbstractUser
-from django.db import models
 
 from modicusprime.utils.base_models import BaseUUIDModel
 
-
-# Create your models here.
 
 class User(AbstractUser, BaseUUIDModel):
     class Meta:

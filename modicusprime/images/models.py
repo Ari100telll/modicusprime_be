@@ -1,8 +1,9 @@
+from typing import Type
+
 from django.contrib.auth import get_user_model
 from django.db import models
 
 from modicusprime.utils.base_models import BaseUUIDModel
-from typing import Type
 
 User = get_user_model()
 

@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -23,10 +24,9 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
-
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # path("", HealthCheckView.as_view(), name="health_check"),
     # path("health/", HealthCheckView.as_view(), name="health_check"),
     # path("version/", VersionView.as_view(), name="version"),
