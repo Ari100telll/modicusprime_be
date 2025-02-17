@@ -7,12 +7,15 @@ from modicusprime.states.models import (
     StatesGroup,
     Transition,
     TransitionRequest,
+    TransitionRequestActionLog,
 )
 
 User = get_user_model()
 
 
 class StateOutputSerializer(serializers.ModelSerializer):
+    group = serializers.CharField()
+
     class Meta:
         model = StateDefinition
         fields = "__all__"
@@ -71,3 +74,9 @@ class TransitionRequestInputSerializer(serializers.Serializer):
         queryset=ContentType.objects.filter(model__in=["document", "workspace"]), slug_field="model"
     )
     object_id = serializers.UUIDField()
+
+
+class TransitionRequestActionLogOutputSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TransitionRequestActionLog
+        fields = "__all__"

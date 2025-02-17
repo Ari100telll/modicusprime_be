@@ -8,6 +8,7 @@ from modicusprime.states.api.views import (
     TransitionCreateListApi,
     TransitionDeleteApi,
     TransitionRequestCreateListApi,
+    TransitionRequestListApi,
 )
 
 app_name = "states"
@@ -20,4 +21,5 @@ urlpatterns = [
     path("transitions/", TransitionCreateListApi.as_view(), name="transitions-create-list"),
     path("transitions/<uuid:transition_id>/", TransitionDeleteApi.as_view(), name="transitions-delete"),
     path("transitions-requests/", TransitionRequestCreateListApi.as_view(), name="transitions-requests-create-list"),
+    path("transitions-requests-logs/", TransitionRequestListApi.as_view(), name="transitions-requests-logs-list"),
 ]

@@ -11,6 +11,7 @@ from modicusprime.states.api.serializers import (
     StatesGroupOutputSerializer,
     TransitionInputSerializer,
     TransitionOutputSerializer,
+    TransitionRequestActionLogOutputSerializer,
     TransitionRequestInputSerializer,
     TransitionRequestOutputSerializer,
 )
@@ -19,6 +20,7 @@ from modicusprime.states.models import (
     StatesGroup,
     Transition,
     TransitionRequest,
+    TransitionRequestActionLog,
 )
 from modicusprime.states.services import create_transition, create_transition_request
 from modicusprime.utils.pegination_common import CommonPagination
@@ -116,3 +118,10 @@ class TransitionRequestCreateListApi(ListAPIView):
         transition_request = create_transition_request(**serializer.validated_data, user=request.user)
         data = self.serializer_class(transition_request).data
         return Response(data, status=HTTP_201_CREATED)
+
+
+class TransitionRequestListApi(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = TransitionRequestActionLog.objects.all()
+    serializer_class = TransitionRequestActionLogOutputSerializer
+    pagination_class = CommonPagination
