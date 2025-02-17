@@ -37,4 +37,5 @@ def get_generic_instance(
 
 
 def get_available_transitions_by_state(*, current_stage: StateDefinition):
+    # Todo Add filtration bu request user permissions.
     return Transition.objects.filter(from_state=current_stage)
