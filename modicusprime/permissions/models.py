@@ -20,6 +20,7 @@ User = get_user_model()
 class InstancePermission(BaseUUIDModel):
     user = ForeignKey(User, on_delete=CASCADE, related_name="instances_permissions")
 
+    # Example of other permissions
     is_edit_allowed = BooleanField(default=False)
     transactions = ManyToManyField(Transition, related_name="instances_permissions")
 

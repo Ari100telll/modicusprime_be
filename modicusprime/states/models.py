@@ -23,6 +23,7 @@ class StateDefinition(BaseUUIDModel):
     group = models.ForeignKey(StatesGroup, on_delete=models.CASCADE, related_name="definitions")
     name = models.CharField(max_length=255)
     key = models.CharField(max_length=255)
+    # Why do we need null=True?
     description = models.TextField(blank=True, null=True)
     color = models.CharField(max_length=255, blank=True, null=True)
     icon = models.CharField(max_length=255, blank=True, null=True)

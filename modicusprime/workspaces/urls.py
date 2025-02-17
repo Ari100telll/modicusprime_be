@@ -5,7 +5,8 @@ from modicusprime.workspaces.api.views import (
     DocumentDeleteApi,
     DocumentsCreateListApi,
     WorkspaceAvailableTransitionsListApi,
-    WorkspaceDeleteApi,
+    WorkspaceContributorsRemoveApi,
+    WorkspaceEditDeleteApi,
     WorkspacesCreateListApi,
 )
 
@@ -13,7 +14,12 @@ app_name = "workspaces"
 
 urlpatterns = [
     path("", WorkspacesCreateListApi.as_view(), name="workspaces-create-list"),
-    path("<uuid:workspace_id>/", WorkspaceDeleteApi.as_view(), name="workspaces-delete"),
+    path("<uuid:workspace_id>/", WorkspaceEditDeleteApi.as_view(), name="workspaces-edit-delete"),
+    path(
+        "<uuid:workspace_id>/contributor/remove/",
+        WorkspaceContributorsRemoveApi.as_view(),
+        name="workspaces-contributors-remove",
+    ),
     path(
         "<uuid:workspace_id>/available-transitions/",
         WorkspaceAvailableTransitionsListApi.as_view(),

@@ -35,6 +35,7 @@ def create_transition_request(
     content_type: ContentType,
     object_id: uuid.UUID,
 ):
+    # Todo Add check user is contributor (additionally)
     with transaction.atomic():
         instance = get_generic_instance(content_type=content_type, object_id=object_id)
         user_instance_permission = InstancePermission.objects.filter(
@@ -55,15 +56,19 @@ def create_transition_request(
         )
 
         if not transition.requires_signature:
-            transaction_request.is_obsolete = True
-            transaction_request.save()
-            instance.state = transition.to_state
-            instance.save()
-            log_transition_request(
-                transaction_request=transaction_request,
-                object_id=object_id,
-                user=user,
-            )
+            check_user_signature(user=user)
+
+        # Todo Should some approval logic be here?
+        #  or approval is just a different state, if so, what does is_obsolete mean?
+        transaction_request.is_obsolete = True
+        transaction_request.save()
+        instance.state = transition.to_state
+        instance.save()
+        log_transition_request(
+            transaction_request=transaction_request,
+            object_id=object_id,
+            user=user,
+        )
 
         return transaction_request
 
@@ -82,3 +87,8 @@ def log_transition_request(
         previous_state=json.dumps(StateOutputSerializer(transaction_request.transition.from_state).data),
         new_state=json.dumps(StateOutputSerializer(transaction_request.transition.to_state).data),
     )
+
+
+def check_user_signature(*, user: User):
+    # raise NotimplementedError
+    pass

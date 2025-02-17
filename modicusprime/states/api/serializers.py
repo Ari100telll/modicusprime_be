@@ -26,6 +26,7 @@ class StateInputSerializer(serializers.Serializer):
     key = serializers.CharField(max_length=255)
     description = serializers.CharField(required=False)
     color = serializers.CharField(required=False)
+    # Todo Change to image field ot url fild
     icon = serializers.CharField(required=False)
     group = serializers.PrimaryKeyRelatedField(queryset=StatesGroup.objects.all())
 

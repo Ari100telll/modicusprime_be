@@ -30,3 +30,6 @@ class Document(BaseUUIDModel):
     state = models.ForeignKey(
         StateDefinition, on_delete=models.SET_NULL, related_name="documents", null=True, blank=True
     )
+
+
+# Todo Add contributor

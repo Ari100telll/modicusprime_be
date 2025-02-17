@@ -2,6 +2,7 @@ import uuid
 
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
+from django.db import transaction
 from rest_framework.exceptions import ValidationError
 
 from modicusprime.permissions.models import InstancePermission
@@ -30,14 +31,15 @@ def create_instance_premission(
     if InstancePermission.objects.filter(user=user, content_type=content_type, object_id=object_id).exists():
         raise ValidationError("Instance permission already exists")
 
-    instance_permissions = InstancePermission.objects.create(
-        is_edit_allowed=is_edit_allowed,
-        user=user,
-        content_type=content_type,
-        object_id=object_id,
-    )
+    with transaction.atomic():
+        instance_permissions = InstancePermission.objects.create(
+            is_edit_allowed=is_edit_allowed,
+            user=user,
+            content_type=content_type,
+            object_id=object_id,
+        )
 
-    if transactions:
-        instance_permissions.transactions.add(*transactions)
+        if transactions:
+            instance_permissions.transactions.add(*transactions)
 
-    return instance_permissions
+        return instance_permissions

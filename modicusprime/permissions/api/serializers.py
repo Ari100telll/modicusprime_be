@@ -25,6 +25,7 @@ class InstancePermissionsOutputSerializer(serializers.ModelSerializer):
         return obj.content_type.model if obj.content_type else None
 
     def get_related_object(self, obj):
+        # Todo add getting "document" and "workspace" from model and move to constants
         if obj.content_type.model == "document":
             document = Document.objects.filter(id=obj.object_id).first()
             return DocumentsOutputSerializer(instance=document).data
@@ -35,7 +36,6 @@ class InstancePermissionsOutputSerializer(serializers.ModelSerializer):
 
 
 class InstancePermissionInputSerializer(serializers.Serializer):
-
     is_edit_allowed = serializers.BooleanField(default=False)
     user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
     transactions = serializers.ListSerializer(

@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -25,14 +26,15 @@ from modicusprime.states.models import (
 from modicusprime.states.services import create_transition, create_transition_request
 from modicusprime.utils.pegination_common import CommonPagination
 
-# Create your views here.
 
-
+# Todo add drf_spectacular for enpoints.
 class StatesCreateListApi(ListAPIView):
     permission_classes = [IsAuthenticated]
     queryset = StateDefinition.objects.all()
     serializer_class = StateOutputSerializer
     pagination_class = CommonPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["group"]
 
     def post(self, request):
         """Create a new state defenition."""
@@ -46,6 +48,7 @@ class StatesCreateListApi(ListAPIView):
 class StatesDeleteApi(APIView):
     permission_classes = [IsAuthenticated]
 
+    # Todo safe delete for state.
     def delete(self, request, state_id):
         """Delete a state defenition."""
         state = get_object_or_404(StateDefinition, id=state_id)
@@ -96,6 +99,7 @@ class TransitionCreateListApi(ListAPIView):
 class TransitionDeleteApi(APIView):
     permission_classes = [IsAuthenticated]
 
+    # Todo Safe delete for transition (affect request and complete request)
     def delete(self, request, transition_id):
         """Delete a transition."""
         transition = get_object_or_404(Transition, id=transition_id)
