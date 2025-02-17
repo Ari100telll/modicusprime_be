@@ -24,7 +24,6 @@ class UserOutputSerializer(ModelSerializer):
 
 
 class UserInputSerializer(Serializer):
-    username = CharField()
     email = EmailField()
     password = CharField()
     first_name = CharField()

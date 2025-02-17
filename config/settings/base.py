@@ -47,6 +47,7 @@ LOCAL_APPS = [
     "modicusprime.tokens.apps.TokensConfig",
     "modicusprime.states.apps.StatesConfig",
     "modicusprime.workspaces.apps.WorkspacesConfig",
+    "modicusprime.permissions.apps.PermissionsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -157,3 +158,4 @@ CORS_ALLOWED_ORIGIN_REGEXES = [
 ]
 CORS_ALLOWED_ORIGINS = env.list("DJANGO_CORS_ALLOWED_ORIGINS", default=["http://localhost:3000"])
 CORS_ALLOW_ALL_ORIGINS = env.bool("DJANGO_CORS_ALLOW_ALL_ORIGINS", False)
+
