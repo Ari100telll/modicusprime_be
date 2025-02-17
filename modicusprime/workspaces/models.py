@@ -19,24 +19,14 @@ class Workspace(BaseUUIDModel):
     description = models.JSONField(blank=True, null=True)
     contributors = models.ManyToManyField(User, related_name="contributed_workspaces")
     state = models.ForeignKey(
-        StateDefinition,
-        on_delete=models.SET_NULL,
-        related_name="workspaces",
-        null=True,
-        blank=True
+        StateDefinition, on_delete=models.SET_NULL, related_name="workspaces", null=True, blank=True
     )
 
 
 class Document(BaseUUIDModel):
-    workspace = models.ForeignKey(
-        Workspace, on_delete=models.CASCADE, related_name="documents"
-    )
+    workspace = models.ForeignKey(Workspace, on_delete=models.CASCADE, related_name="documents")
     title = models.CharField(max_length=255)
     file = models.FileField(upload_to=document_path)
     state = models.ForeignKey(
-        StateDefinition,
-        on_delete=models.SET_NULL,
-        related_name="documents",
-        null=True,
-        blank=True
+        StateDefinition, on_delete=models.SET_NULL, related_name="documents", null=True, blank=True
     )

@@ -1,7 +1,14 @@
 from django.urls import path
 
-from modicusprime.states.api.views import StatesCreateListApi, StatesGroupsCreateListApi, StatesDeleteApi, \
-    StatesGroupsDeleteApi, TransitionCreateListApi, TransitionDeleteApi, TransitionRequestCreateListApi
+from modicusprime.states.api.views import (
+    StatesCreateListApi,
+    StatesDeleteApi,
+    StatesGroupsCreateListApi,
+    StatesGroupsDeleteApi,
+    TransitionCreateListApi,
+    TransitionDeleteApi,
+    TransitionRequestCreateListApi,
+)
 
 app_name = "states"
 

@@ -4,7 +4,10 @@ from rest_framework import serializers
 
 from modicusprime.permissions.models import InstancePermission
 from modicusprime.states.models import Transition
-from modicusprime.workspaces.api.serializers import DocumentsOutputSerializer, WorkspacesOutputSerializer
+from modicusprime.workspaces.api.serializers import (
+    DocumentsOutputSerializer,
+    WorkspacesOutputSerializer,
+)
 from modicusprime.workspaces.models import Document, Workspace
 
 User = get_user_model()
@@ -16,7 +19,7 @@ class InstancePermissionsOutputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = InstancePermission
-        fields = '__all__'
+        fields = "__all__"
 
     def get_content_type(self, obj):
         return obj.content_type.model if obj.content_type else None

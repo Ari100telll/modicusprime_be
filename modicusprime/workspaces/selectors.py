@@ -36,8 +36,5 @@ def get_generic_instance(
     return instance
 
 
-def get_available_transitions_by_state(
-    *,
-    current_stage: StateDefinition
-):
+def get_available_transitions_by_state(*, current_stage: StateDefinition):
     return Transition.objects.filter(from_state=current_stage)

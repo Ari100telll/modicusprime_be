@@ -5,15 +5,14 @@ from django.contrib.contenttypes.models import ContentType
 from rest_framework.exceptions import ValidationError
 
 from modicusprime.permissions.models import InstancePermission
-from modicusprime.workspaces.selectors import get_workspace_from_generic_instance
 from modicusprime.states.models import Transition
+from modicusprime.workspaces.selectors import get_workspace_from_generic_instance
 
 User = get_user_model()
 
 
 def create_instance_premission(
     *,
-
     is_edit_allowed: bool,
     user: User,
     content_type: ContentType,

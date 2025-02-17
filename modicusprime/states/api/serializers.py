@@ -2,7 +2,12 @@ from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from rest_framework import serializers
 
-from modicusprime.states.models import StateDefinition, StatesGroup, Transition, TransitionRequest
+from modicusprime.states.models import (
+    StateDefinition,
+    StatesGroup,
+    Transition,
+    TransitionRequest,
+)
 
 User = get_user_model()
 
@@ -10,7 +15,7 @@ User = get_user_model()
 class StateOutputSerializer(serializers.ModelSerializer):
     class Meta:
         model = StateDefinition
-        fields = '__all__'
+        fields = "__all__"
 
 
 class StateInputSerializer(serializers.Serializer):
@@ -25,7 +30,7 @@ class StateInputSerializer(serializers.Serializer):
 class StatesGroupOutputSerializer(serializers.ModelSerializer):
     class Meta:
         model = StatesGroup
-        fields = '__all__'
+        fields = "__all__"
 
 
 class StatesGroupInputSerializer(serializers.Serializer):
@@ -39,7 +44,7 @@ class TransitionOutputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Transition
-        fields = '__all__'
+        fields = "__all__"
 
 
 class TransitionInputSerializer(serializers.Serializer):
@@ -53,7 +58,7 @@ class TransitionRequestOutputSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TransitionRequest
-        fields = '__all__'
+        fields = "__all__"
 
     def get_content_type(self, obj):
         return obj.content_type.model if obj.content_type else None

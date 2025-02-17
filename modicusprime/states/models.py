@@ -20,9 +20,7 @@ class StatesGroup(BaseUUIDModel):
 
 # User is able to create state definitions
 class StateDefinition(BaseUUIDModel):
-    group = models.ForeignKey(
-        StatesGroup, on_delete=models.CASCADE, related_name="definitions"
-    )
+    group = models.ForeignKey(StatesGroup, on_delete=models.CASCADE, related_name="definitions")
     name = models.CharField(max_length=255)
     key = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
@@ -40,25 +38,22 @@ class Transition(BaseUUIDModel):
     from_state = models.ForeignKey(
         StateDefinition, on_delete=models.CASCADE, related_name="from_transitions", null=True, blank=True
     )
-    to_state = models.ForeignKey(
-        StateDefinition, on_delete=models.CASCADE, related_name="to_transitions"
-    )
+    to_state = models.ForeignKey(StateDefinition, on_delete=models.CASCADE, related_name="to_transitions")
 
     def __str__(self):
-        return f"{self.from_state.name if self.from_state else '-'} -> {self.to_state.name} (RS: {self.requires_signature})"
+        return (
+            f"{self.from_state.name if self.from_state else '-'} -> "
+            f"{self.to_state.name} (RS: {self.requires_signature})"
+        )
 
     class Meta:
-        unique_together = ('from_state', 'to_state')
+        unique_together = ("from_state", "to_state")
 
 
 # User is able to request transitions
 class TransitionRequest(BaseUUIDModel):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="transition_requests"
-    )
-    transition = models.ForeignKey(
-        Transition, on_delete=models.CASCADE, related_name="requests"
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="transition_requests")
+    transition = models.ForeignKey(Transition, on_delete=models.CASCADE, related_name="requests")
     meta = models.JSONField(blank=True, null=True)
     is_obsolete = models.BooleanField(default=False)
 
@@ -71,9 +66,7 @@ class TransitionRequest(BaseUUIDModel):
 
 
 class TransitionRequestActionLog(BaseUUIDModel):
-    user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="transition_request_actions"
-    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="transition_request_actions")
     previous_state = models.JSONField(blank=True, null=True)
     new_state = models.JSONField(blank=True, null=True)
 

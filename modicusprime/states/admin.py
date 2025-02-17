@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from modicusprime.states.models import StatesGroup, StateDefinition, Transition, TransitionRequest
+from modicusprime.states.models import (
+    StateDefinition,
+    StatesGroup,
+    Transition,
+    TransitionRequest,
+)
 
 # Register your models here.
 

@@ -1,7 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.db.models import ForeignKey, CASCADE, BooleanField, ManyToManyField, UUIDField
+from django.db.models import (
+    CASCADE,
+    BooleanField,
+    ForeignKey,
+    ManyToManyField,
+    UUIDField,
+)
 
 from modicusprime.states.models import Transition
 from modicusprime.utils.base_models import BaseUUIDModel

@@ -4,15 +4,27 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 
-from modicusprime.states.api.serializers import StateOutputSerializer, StateInputSerializer, \
-    StatesGroupOutputSerializer, StatesGroupInputSerializer, TransitionOutputSerializer, TransitionInputSerializer, \
-    TransitionRequestOutputSerializer, TransitionRequestInputSerializer
-from modicusprime.states.models import StateDefinition, StatesGroup, Transition, TransitionRequest
+from modicusprime.states.api.serializers import (
+    StateInputSerializer,
+    StateOutputSerializer,
+    StatesGroupInputSerializer,
+    StatesGroupOutputSerializer,
+    TransitionInputSerializer,
+    TransitionOutputSerializer,
+    TransitionRequestInputSerializer,
+    TransitionRequestOutputSerializer,
+)
+from modicusprime.states.models import (
+    StateDefinition,
+    StatesGroup,
+    Transition,
+    TransitionRequest,
+)
 from modicusprime.states.services import create_transition, create_transition_request
 from modicusprime.utils.pegination_common import CommonPagination
 
-
 # Create your views here.
+
 
 class StatesCreateListApi(ListAPIView):
     permission_classes = [IsAuthenticated]

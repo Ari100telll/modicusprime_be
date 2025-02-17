@@ -1,5 +1,3 @@
-from zoneinfo import available_timezones
-
 from rest_framework.generics import ListAPIView, get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -8,13 +6,17 @@ from rest_framework.views import APIView
 
 from modicusprime.states.api.serializers import TransitionOutputSerializer
 from modicusprime.utils.pegination_common import CommonPagination
-from modicusprime.workspaces.api.serializers import WorkspaceInputSerializer, WorkspacesOutputSerializer, \
-    DocumentInputSerializer, DocumentsOutputSerializer
-from modicusprime.workspaces.models import Workspace, Document
+from modicusprime.workspaces.api.serializers import (
+    DocumentInputSerializer,
+    DocumentsOutputSerializer,
+    WorkspaceInputSerializer,
+    WorkspacesOutputSerializer,
+)
+from modicusprime.workspaces.models import Document, Workspace
 from modicusprime.workspaces.selectors import get_available_transitions_by_state
 
-
 # Create your views here.
+
 
 class WorkspacesCreateListApi(ListAPIView):
     permission_classes = [IsAuthenticated]
