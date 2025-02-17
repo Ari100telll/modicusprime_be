@@ -44,8 +44,9 @@ THIRD_PARTY_APPS = ["rest_framework", "drf_spectacular", "corsheaders"]
 
 LOCAL_APPS = [
     "modicusprime.users.apps.UsersConfig",
-    "modicusprime.images.apps.ImagesConfig",
     "modicusprime.tokens.apps.TokensConfig",
+    "modicusprime.states.apps.StatesConfig",
+    "modicusprime.workspaces.apps.WorkspacesConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
