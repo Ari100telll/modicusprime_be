@@ -53,7 +53,9 @@ class TransitionOutputSerializer(serializers.ModelSerializer):
 
 class TransitionInputSerializer(serializers.Serializer):
     requires_signature = serializers.BooleanField(default=False)
-    from_state = serializers.PrimaryKeyRelatedField(queryset=StateDefinition.objects.all())
+    from_state = serializers.PrimaryKeyRelatedField(
+        queryset=StateDefinition.objects.all(), required=False, allow_null=True
+    )
     to_state = serializers.PrimaryKeyRelatedField(queryset=StateDefinition.objects.all())
 
 
